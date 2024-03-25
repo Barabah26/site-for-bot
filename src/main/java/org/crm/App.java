@@ -1,10 +1,23 @@
 package org.crm;
 
+import org.crm.dao.CollectionAdminDAO;
+import org.crm.services.AdminService;
+import org.crm.services.FreemarkerService;
+import org.crm.servlets.CssServlet;
+import org.crm.servlets.LoginServlet;
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.servlet.ServletContextHandler;
+import org.eclipse.jetty.servlet.ServletHolder;
+
+import javax.servlet.http.HttpServlet;
 import java.sql.Connection;
 import java.sql.SQLException;
 
 public class App {
-    public static void main(String[] args) {
+    private static final String DIR_TEMPLATES_NAME = "templates";
+    public static void main(String[] args) throws Exception {
+
+        Server server = new Server(8080);
 
         Connection conn = null;
 
@@ -13,6 +26,25 @@ public class App {
         } catch (SQLException e) {
             System.out.println("Error connection to DB");
         }
+
+        CollectionAdminDAO collectionAdminDAO = new CollectionAdminDAO(conn);
+        AdminService adminService = new AdminService(collectionAdminDAO);
+
+        FreemarkerService freemarkerService = new FreemarkerService(DIR_TEMPLATES_NAME);
+
+        ServletContextHandler handler = new ServletContextHandler();
+
+        HttpServlet cssServlet = new CssServlet("templates/css");
+        HttpServlet loginServlet = new LoginServlet(freemarkerService, adminService);
+
+
+
+        handler.addServlet(new ServletHolder(cssServlet), "/css/*");
+        handler.addServlet(new ServletHolder(loginServlet), "/login/*");
+
+        server.setHandler(handler);
+        server.start();
+        server.join();
 
     }
 }

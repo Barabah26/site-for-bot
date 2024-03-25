@@ -22,7 +22,7 @@ public class Auth {
     }
 
     public static String getCookieValueUnsafe(HttpServletRequest rq) {
-        return getCookieValue(rq)
+        return  getCookieValue(rq)
                 .orElseThrow(() -> EX);
     }
 
