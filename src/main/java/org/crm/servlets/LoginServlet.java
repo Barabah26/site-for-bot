@@ -26,8 +26,9 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HashMap<String, Object> usersForRender = new HashMap<>();
-        String massage = isLoginValid ? "" : "Incorrect login or password";
-        usersForRender.put("errorMassage", massage);
+        String message = isLoginValid ? "" : "Incorrect login or password";
+        usersForRender.put("errorMessage", message);
+        resp.setCharacterEncoding("UTF-8");
 
         try (PrintWriter w = resp.getWriter()) {
             freemarker.render("login.ftl", usersForRender, w);

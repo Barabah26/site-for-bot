@@ -1,5 +1,6 @@
 package org.crm.servlets;
 
+import org.crm.Auth;
 import org.crm.services.FreemarkerService;
 
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.Optional;
 
 public class StudentsServlet extends HttpServlet {
 
@@ -21,6 +23,9 @@ public class StudentsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HashMap<String, Object> usersForRender = new HashMap<>();
+//        Optional<String> getAdmin = Auth.getCookieValue(req);
+//        usersForRender.put("adminIN", );
+        resp.setCharacterEncoding("UTF-8");
         try (PrintWriter w = resp.getWriter()) {
             freemarker.render("main-page.ftl", usersForRender, w);
         }

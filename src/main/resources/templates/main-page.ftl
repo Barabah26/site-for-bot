@@ -10,7 +10,7 @@
 <header class="header">
     <div class="user-info">
         <span>Ласкаво просимо, Ім'я Користувача!</span>
-        <button id="logout-button">Вихід</button>
+        <button id="logout-button" onclick="window.location='/logout'">Вихід</button>
     </div>
 </header>
 
@@ -88,11 +88,5 @@
     </table>
 </div>
 
-<script>
-    document.getElementById("logout-button").addEventListener("click", function() {
-        // Реалізуйте тут логіку виходу користувача
-        alert("Ви вийшли з системи!");
-    });
-</script>
 </body>
 </html>
