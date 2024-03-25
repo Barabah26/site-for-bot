@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="login-container">
-    <h2>Sign in</h2>
+    <h2>Log in</h2>
     <p class="error-message">${errorMassage}</p>
     <form method="post">
         <div class="input-group">
@@ -19,7 +19,7 @@
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
         </div>
-        <button type="submit">Sign in</button>
+        <button type="submit">Log in</button>
     </form>
 </div>
 </body>

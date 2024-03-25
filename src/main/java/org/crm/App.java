@@ -5,6 +5,7 @@ import org.crm.services.AdminService;
 import org.crm.services.FreemarkerService;
 import org.crm.servlets.CssServlet;
 import org.crm.servlets.LoginServlet;
+import org.crm.servlets.StudentsServlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -36,11 +37,14 @@ public class App {
 
         HttpServlet cssServlet = new CssServlet("templates/css");
         HttpServlet loginServlet = new LoginServlet(freemarkerService, adminService);
+        HttpServlet studentsServlet = new StudentsServlet(freemarkerService);
 
 
 
         handler.addServlet(new ServletHolder(cssServlet), "/css/*");
         handler.addServlet(new ServletHolder(loginServlet), "/login/*");
+        handler.addServlet(new ServletHolder(studentsServlet), "/students/*");
+
 
         server.setHandler(handler);
         server.start();

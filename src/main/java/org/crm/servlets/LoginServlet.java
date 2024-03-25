@@ -50,7 +50,7 @@ public class LoginServlet extends HttpServlet {
             resp.sendRedirect("/login");
         } else if (login.equals(admin.get().getLogin()) && password.equals(admin.get().getPassword())) {
             Auth.setCookieValue(String.valueOf(admin.get().getId()), resp);
-            resp.sendRedirect("/main-page");
+            resp.sendRedirect("/students");
         }
 
     }
