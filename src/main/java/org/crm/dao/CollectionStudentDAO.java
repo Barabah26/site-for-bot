@@ -14,8 +14,12 @@ import java.util.Optional;
 public class CollectionStudentDAO implements StudentsDAO{
 
     private static final String GET_STUDENT = """
-            SELECT id, pip, group_name, year_entry, phone_number, statement
+            SELECT DISTINCT id, pip, group_name, year_entry, phone_number, statement
                     FROM students""";
+
+    private static final String UPDATE_STATUS = """
+        UPDATE students SET status = true WHERE id = ?""";
+
 
     private final Connection conn;
     private List<Student> studentList;
@@ -24,6 +28,38 @@ public class CollectionStudentDAO implements StudentsDAO{
         this.conn = conn;
         this.studentList = new ArrayList<>();
     }
+
+    public boolean updateStatus(long studentId) {
+        PreparedStatement ps = null;
+
+        try {
+            ps = conn.prepareStatement(UPDATE_STATUS);
+            ps.setLong(1, studentId);
+            int rowsAffected = ps.executeUpdate();
+
+            // Оновлення статусу об'єкта Student в studentList
+            if (rowsAffected > 0) {
+                for (Student student : studentList) {
+                    if (student.getId() == studentId) {
+                        student.setStatus(true);
+                        break;
+                    }
+                }
+            }
+
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to update student status", e);
+        } finally {
+            try {
+                if (ps != null) ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
 
     public List<Student> getAllStudentsFromDB() {
         PreparedStatement ps = null;
@@ -86,4 +122,9 @@ public class CollectionStudentDAO implements StudentsDAO{
         }
         return true;
     }
+
+    public void clearStudentList() {
+        studentList.clear();
+    }
+
 }

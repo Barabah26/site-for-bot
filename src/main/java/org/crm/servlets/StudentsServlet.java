@@ -53,8 +53,16 @@ public class StudentsServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String isReady = req.getParameter("isReady");
+        String studentIdParam = req.getParameter("studentId");
 
+        if (studentIdParam != null) {
+            long studentId = Long.parseLong(studentIdParam);
+            studentService.updateStatus(studentId);
+        }
 
+        studentService.clearStudentList();
+        resp.sendRedirect("/students");
     }
+
+
 }

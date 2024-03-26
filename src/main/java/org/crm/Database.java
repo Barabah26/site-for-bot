@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class Database {
     public static Connection mkConn() throws SQLException {
         return DriverManager.getConnection(
-                "jdbc:postgresql://localhost:5432/crmDB",
+                "jdbc:postgresql://localhost:5432/crmDATA",
                 "root",
                 "root");
     }

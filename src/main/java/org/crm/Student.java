@@ -7,6 +7,7 @@ public class Student {
     private String year_entry;
     private String phone_number;
     private String statement;
+    private boolean status;
 
     public Student(long id, String pip, String group, String year_entry, String phoneNumber, String statement) {
         this.id = id;
@@ -39,5 +40,13 @@ public class Student {
 
     public String getStatement() {
         return statement;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

@@ -41,7 +41,7 @@ public class App {
         HttpServlet cssServlet = new CssServlet("templates/css");
         HttpServlet loginServlet = new LoginServlet(freemarkerService, adminService);
         HttpServlet studentsServlet = new StudentsServlet(freemarkerService, adminService, studentService);
-        HttpServlet logoutServlet = new LogoutServlet(freemarkerService);
+        HttpServlet logoutServlet = new LogoutServlet(freemarkerService, studentService);
 
 
 

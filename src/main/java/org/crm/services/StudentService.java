@@ -29,4 +29,12 @@ public class StudentService {
     public boolean saveStudent(Student student) {
         return collectionStudentDAO.saveStudent(student);
     }
+
+    public boolean updateStatus(long id){
+        return collectionStudentDAO.updateStatus(id);
+    }
+
+    public void clearStudentList(){
+        collectionStudentDAO.clearStudentList();
+    }
 }

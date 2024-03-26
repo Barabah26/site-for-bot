@@ -7,9 +7,9 @@ services:
     environment:
       POSTGRES_USER: 'root'
       POSTGRES_PASSWORD: 'root'
-      POSTGRES_DB: 'crmDB'
+      POSTGRES_DB: 'crmDATA'
     ports:
       - '5432:5432'
     volumes:
       - ../.data/pg96:/var/lib/postgresql/data/
-    container_name: crm-db
+    container_name: crmDATA

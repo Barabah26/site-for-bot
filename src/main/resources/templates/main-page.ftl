@@ -37,14 +37,12 @@
                     <td>${student.phone_number!""}</td>
                     <td>${student.statement}</td>
                     <td>
-                        <!-- Поле для ідентифікатора студента -->
-                        <input type="hidden" name="isReady" value="Ready">
-                        <button type="submit" name="Ready" value="Ready">Готово</button>
+                        <input type="hidden" name="studentId" value="${student.id}">
+                        <button type="submit" name="isReady" value="true">Готово</button>
                     </td>
                 </tr>
             </#list>
         </form>
-
         </tbody>
     </table>
 
