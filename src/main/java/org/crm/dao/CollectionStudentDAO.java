@@ -28,7 +28,6 @@ public class CollectionStudentDAO implements StudentsDAO{
         this.conn = conn;
         this.studentList = new ArrayList<>();
     }
-
     public boolean updateStatus(long studentId) {
         PreparedStatement ps = null;
 
