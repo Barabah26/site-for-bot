@@ -9,7 +9,7 @@
 <body>
 <header class="header">
     <div class="user-info">
-        <span>Ласкаво просимо, Ім'я Користувача!</span>
+        <span>Ласкаво просимо, ${adminIN}!</span>
         <button id="logout-button" onclick="window.location='/logout'">Вихід</button>
     </div>
 </header>
@@ -28,64 +28,26 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>Барабах Павло Романович</td>
-            <td>КН33с</td>
-            <td>2021</td>
-            <td>38068489423</td>
-            <td>Довідка з місця навчання</td>
-            <td><button>Готово</button></td>
-        </tr>
-        <tr>
-            <td>Барабах Павло Романович</td>
-            <td>КН33с</td>
-            <td>2021</td>
-            <td>38068489423</td>
-            <td>Довідка з місця навчання</td>
-            <td><button>Готово</button></td>
-        </tr>
-        <tr>
-            <td>Барабах Павло Романович</td>
-            <td>КН33с</td>
-            <td>2021</td>
-            <td>38068489423</td>
-            <td>Довідка з місця навчання</td>
-            <td><button>Готово</button></td>
-        </tr>
-        <tr>
-            <td>Барабах Павло Романович</td>
-            <td>КН33с</td>
-            <td>2021</td>
-            <td>38068489423</td>
-            <td>Довідка з місця навчання</td>
-            <td><button>Готово</button></td>
-        </tr>
-        <tr>
-            <td>Барабах Павло Романович</td>
-            <td>КН33с</td>
-            <td>2021</td>
-            <td>38068489423</td>
-            <td>Довідка з місця навчання</td>
-            <td><button>Готово</button></td>
-        </tr>
-        <tr>
-            <td>Барабах Павло Романович</td>
-            <td>КН33с</td>
-            <td>2021</td>
-            <td>38068489423</td>
-            <td>Довідка з місця навчання</td>
-            <td><button>Готово</button></td>
-        </tr>
-        <tr>
-            <td>Барабах Павло Романович</td>
-            <td>КН33с</td>
-            <td>2021</td>
-            <td>38068489423</td>
-            <td>Довідка з місця навчання</td>
-            <td><button>Готово</button></td>
-        </tr>
+        <form method="post">
+            <#list students as student>
+                <tr>
+                    <td>${student.pip}</td>
+                    <td>${student.group_name!""}</td>
+                    <td>${student.year_entry!""}</td>
+                    <td>${student.phone_number!""}</td>
+                    <td>${student.statement}</td>
+                    <td>
+                        <!-- Поле для ідентифікатора студента -->
+                        <input type="hidden" name="isReady" value="Ready">
+                        <button type="submit" name="Ready" value="Ready">Готово</button>
+                    </td>
+                </tr>
+            </#list>
+        </form>
+
         </tbody>
     </table>
+
 </div>
 
 </body>

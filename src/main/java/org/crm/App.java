@@ -1,8 +1,10 @@
 package org.crm;
 
 import org.crm.dao.CollectionAdminDAO;
+import org.crm.dao.CollectionStudentDAO;
 import org.crm.services.AdminService;
 import org.crm.services.FreemarkerService;
+import org.crm.services.StudentService;
 import org.crm.servlets.*;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
@@ -29,13 +31,16 @@ public class App {
         CollectionAdminDAO collectionAdminDAO = new CollectionAdminDAO(conn);
         AdminService adminService = new AdminService(collectionAdminDAO);
 
+        CollectionStudentDAO collectionStudentDAO = new CollectionStudentDAO(conn);
+        StudentService studentService = new StudentService(collectionStudentDAO);
+
         FreemarkerService freemarkerService = new FreemarkerService(DIR_TEMPLATES_NAME);
 
         ServletContextHandler handler = new ServletContextHandler();
 
         HttpServlet cssServlet = new CssServlet("templates/css");
         HttpServlet loginServlet = new LoginServlet(freemarkerService, adminService);
-        HttpServlet studentsServlet = new StudentsServlet(freemarkerService);
+        HttpServlet studentsServlet = new StudentsServlet(freemarkerService, adminService, studentService);
         HttpServlet logoutServlet = new LogoutServlet(freemarkerService);
 
 

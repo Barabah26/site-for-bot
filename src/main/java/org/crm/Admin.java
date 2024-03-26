@@ -4,11 +4,13 @@ public class Admin {
     private long id;
     private String login;
     private String password;
+    private String username;
 
-    public Admin(long id ,String login, String password) {
+    public Admin(long id ,String login, String password, String username) {
         this.id = id;
         this.login = login;
         this.password = password;
+        this.username = username;
     }
 
     public String getLogin() {
@@ -21,5 +23,9 @@ public class Admin {
 
     public long getId() {
         return id;
+    }
+
+    public String getUsername() {
+        return username;
     }
 }

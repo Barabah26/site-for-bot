@@ -14,7 +14,7 @@ import java.util.Optional;
 public class CollectionAdminDAO implements AdminDAO{
 
     private static final String GET_ALL_ADMINS = """
-            SELECT id, login, password
+            SELECT id, login, password, username
                     FROM admins
                     WHERE login = ? AND password = ?""";
 
@@ -42,7 +42,8 @@ public class CollectionAdminDAO implements AdminDAO{
                 Admin admin = new Admin(
                         rs.getLong("id"),
                         rs.getString("login"),
-                        rs.getString("password")
+                        rs.getString("password"),
+                        rs.getString("username")
                 );
                 saveAdmin(admin);
             }
