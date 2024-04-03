@@ -1,6 +1,5 @@
 package org.crm.dao;
 
-import org.crm.Admin;
 import org.crm.Student;
 
 import java.sql.Connection;
@@ -15,11 +14,10 @@ public class CollectionStudentDAO implements StudentsDAO{
 
     private static final String GET_STUDENT = """
             SELECT DISTINCT id, pip, group_name, year_entry, phone_number, statement
-                    FROM students""";
+                    FROM students WHERE status is false ORDER BY pip""";
 
     private static final String UPDATE_STATUS = """
         UPDATE students SET status = true WHERE id = ?""";
-
 
     private final Connection conn;
     private List<Student> studentList;
@@ -68,6 +66,8 @@ public class CollectionStudentDAO implements StudentsDAO{
             ps = conn.prepareStatement(GET_STUDENT);
 
             rs = ps.executeQuery();
+
+            clearStudentList();
 
             while (rs.next()) {
                 Student student = new Student(
