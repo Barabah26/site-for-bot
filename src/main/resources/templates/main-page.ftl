@@ -31,8 +31,8 @@
         <form method="post">
             <#list students as student>
                 <tr>
-                    <td>${student.pip}</td>
-                    <td>${student.group_name!""}</td>
+                    <td>${student.full_name}</td>
+                    <td>${student.groupe!""}</td>
                     <td>${student.year_entry!""}</td>
                     <td>${student.phone_number!""}</td>
                     <td>${student.statement}</td>

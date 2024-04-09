@@ -2,36 +2,34 @@ package org.crm;
 
 public class Student {
     private long id;
-    private String pip;
-    private String group_name;
-    private String year_entry;
+    private String full_name;
+    private String groupe;
     private String phone_number;
     private String statement;
     private boolean status;
+    private Long telegramId;
+    private String year_entry;
 
-    public Student(long id, String pip, String group, String year_entry, String phoneNumber, String statement) {
+
+    public Student(long id, String full_name, String groupe, String phone_number, String statement, String year_entry) {
         this.id = id;
-        this.pip = pip;
-        this.group_name = group;
-        this.year_entry = year_entry;
-        this.phone_number = phoneNumber;
+        this.full_name = full_name;
+        this.groupe = groupe;
+        this.phone_number = phone_number;
         this.statement = statement;
+        this.year_entry = year_entry;
     }
 
     public long getId() {
         return id;
     }
 
-    public String getPip() {
-        return pip;
+    public String getFull_name() {
+        return full_name;
     }
 
-    public String getGroup_name() {
-        return group_name;
-    }
-
-    public String getYear_entry() {
-        return year_entry;
+    public String getGroupe() {
+        return groupe;
     }
 
     public String getPhone_number() {
@@ -44,6 +42,14 @@ public class Student {
 
     public boolean isStatus() {
         return status;
+    }
+
+    public Long getTelegramId() {
+        return telegramId;
+    }
+
+    public String getYear_entry() {
+        return year_entry;
     }
 
     public void setStatus(boolean status) {

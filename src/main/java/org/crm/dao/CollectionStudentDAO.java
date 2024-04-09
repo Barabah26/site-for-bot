@@ -13,11 +13,11 @@ import java.util.Optional;
 public class CollectionStudentDAO implements StudentsDAO{
 
     private static final String GET_STUDENT = """
-            SELECT DISTINCT id, pip, group_name, year_entry, phone_number, statement
-                    FROM students WHERE status is false ORDER BY pip""";
+            SELECT id, full_name, groupe, phone_number, statement, year_entry
+                    FROM bot_user WHERE status is false ORDER BY full_name""";
 
     private static final String UPDATE_STATUS = """
-        UPDATE students SET status = true WHERE id = ?""";
+        UPDATE bot_user SET status = true WHERE id = ?""";
 
     private final Connection conn;
     private List<Student> studentList;
@@ -72,11 +72,14 @@ public class CollectionStudentDAO implements StudentsDAO{
             while (rs.next()) {
                 Student student = new Student(
                         rs.getLong("id"),
-                        rs.getString("pip"),
-                        rs.getString("group_name"),
-                        rs.getString("year_entry"),
+                        rs.getString("full_name"),
+                        rs.getString("groupe"),
                         rs.getString("phone_number"),
-                        rs.getString("statement")
+                        rs.getString("statement"),
+//                        rs.getBoolean("status"),
+//                        rs.getLong("telegram_id"),
+                        rs.getString("year_entry")
+
                 );
                 saveStudent(student);
 
